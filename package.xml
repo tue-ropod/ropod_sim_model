@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <name>ropod_model</name>
+  <version>0.0.0</version>
+  <description>No description available</description>
+
+  <maintainer email="todo@tue.nl">todo</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+</package>

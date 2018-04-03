@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<robot name="visual">
+
+           
+    <link name='base_link'>
+      <pose>0 0 0 0 -0 0</pose>
+  
+
+
+      <collision name='base_link_collision'>
+        <pose>0 0 0.1 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.6 0.6 0.1</size>
+          </box>
+        </geometry>        
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0.1 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.6 0.6 0.1</size>
+          </box>
+        </geometry>
+      </visual>      
+      
+      <collision name='base_link_collision_left_rear_wheel'>
+        <pose>-0.25 0.25 0.05 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+         <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+09</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>5</mu>
+              <mu2>5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual_left_rear_wheel'>
+         <pose>-0.25 0.25 0.05 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+
+
+      <collision name='base_link_collision_left_top_wheel'>
+        <pose>0.25 0.25 0.05 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+         <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+09</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>5</mu>
+              <mu2>5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual_left_top_wheel'>
+         <pose>0.25 0.25 0.05 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      
+      <collision name='base_link_collision_right_top_wheel'>
+        <pose>0.25 -0.25 0.05 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+         <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+09</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>5</mu>
+              <mu2>5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual_right_top_wheel'>
+         <pose>0.25 -0.25 0.05 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>            
+  
+  
+      <collision name='base_link_collision_right_rear_wheel'>
+        <pose>-0.25 -0.25 0.05 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+         <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+09</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>5</mu>
+              <mu2>5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual_right_rear_wheel'>
+         <pose>-0.25 -0.25 0.05 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.05</radius>
+          </sphere>
+        </geometry>
+      </visual>     
+
+<!-- ********************** laser ***************************** -->       
+      
+      <visual name='base_link_visual_laser'>
+        <pose>0.25 0 0.25 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.039</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='base_link_visual_lasertop'>
+        <pose>0.25 0 0.275 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.01</size>
+          </box>
+        </geometry>        
+      </visual>
+      
+      <sensor name='laser' type='ray'>
+	 <pose>0.25 0 0.22 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1000</samples>
+              <resolution>1</resolution>
+              <min_angle>-2.2</min_angle>
+              <max_angle>2.2</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.01</min>
+            <max>15</max>
+            <resolution>0.01</resolution>
+          </range>
+	  <material>
+	      <script>
+	      <name>Gazebo/BlueTransparent</name>
+	      <uri>file://media/materials/scripts/gazebo.material</uri>
+	    </script>
+	  </material>
+        </ray>
+
+
+      <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
+        <topicName>/ropod/laser_sim</topicName>
+         <frameName>/ropod/laser/scan</frameName> 
+        <robotNamespace></robotNamespace>        
+        <gaussianNoise>0.01</gaussianNoise>
+        <always_on>1</always_on>
+        <updateRate>30.0</updateRate>
+      </plugin>        
+      <visualize>1</visualize>
+     
+      
+    </sensor>
+
+     
+<!-- ********************** Camera ***************************** -->    
+
+         <sensor name='asusxtion' type='depth'>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>1</visualize>
+        <plugin name='asusxtion_controller' filename='libKinectPlugin.so'>
+          <camera>
+            <horizontal_fov>2.967060</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip/>
+          </camera>
+          <alwaysOn>1</alwaysOn>
+          <updateRate>30.0</updateRate>
+          <cameraName>asusxtion</cameraName>
+          <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+          <imageTopicName>rgb/image_color_rect</imageTopicName>
+          <camInfoServiceName>rgb/cam_info_service</camInfoServiceName>
+          <depthImageTopicName>depth_registered/image_rect</depthImageTopicName>
+          <depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
+          <pointCloudTopicName>rgb/points</pointCloudTopicName>
+          <pollServiceName>poll</pollServiceName>
+          <frameName>camera</frameName>
+          <ratio>3.7778</ratio>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+          <distortionK1>0</distortionK1>
+          <distortionK2>0</distortionK2>
+          <distortionK3>0</distortionK3>
+          <distortionT1>0</distortionT1>
+          <distortionT2>0</distortionT2>
+        </plugin>
+        <pose>-0.02 0 0.09 0 -0 0</pose>
+      </sensor>
+
+     
+<!-- ********************** Other parameters ***************************** -->
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+
+   
+   </link>
+
+<plugin name="Odometry_Plugin" filename="libOdometry_Plugin.so">
+       <alwaysOn>true</alwaysOn>
+       <updateRate>50.0</updateRate>
+       <bodyName>base_link</bodyName>
+       <topicName>/ropod/cmd_vel</topicName>
+       <gaussianNoise>0</gaussianNoise>
+       <frameName>map</frameName>
+       <xyzOffsets>0 0 0</xyzOffsets> 
+       <rpyOffsets>0 0 0</rpyOffsets>
+ </plugin>
+
+
+</robot>
