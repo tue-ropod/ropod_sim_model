@@ -1,0 +1,14 @@
+material pico_robot_model_groovy/head
+{
+    receive_shadows on
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture head.jpg
+			}
+		}
+	}
+}

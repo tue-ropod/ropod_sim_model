@@ -1,0 +1,375 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+   
+  <model name='pico'>      
+  
+
+   <link name='base_link'>        
+	  <visual name='base_link_visual'>
+        <pose>0.0765 0 0.3975 1.5708 -5.55112e-17 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://media/meshes/torso.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+   <!--   <collision name='base_link_collision'>
+        <pose>-0.0765 0 0.3975 1.5708 -5.55112e-17 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://media/meshes/torso.dae</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <collision name='base_link_collision_left_castor'>
+        <pose>-0.15 0.075 0.06 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <collision name='base_link_collision_right_castor'>
+        <pose>-0.15 -0.075 0.03 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      
+      <visual name='base_link_visual_laser'>
+        <pose>0.04 0 0.325 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.039</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='base_link_visual_lasertop'>
+        <pose>0.04 0 0.349 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='base_link_visual_left_castor'>
+        <pose>-0.15 0.075 0.03 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <visual name='base_link_visual_right_castor'>
+        <pose>-0.15 -0.075 0.03 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </visual>
+           <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+      
+      <sensor name='laser' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1000</samples>
+              <resolution>1</resolution>
+              <min_angle>-2.2</min_angle>
+              <max_angle>2.2</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.01</min>
+            <max>15</max>
+            <resolution>0.01</resolution>
+          </range>
+		</ray>
+        <!--plugin name='gazebo_ros_laser_plugin' filename='libLaserPlugin.so'>
+          <gaussianNoise>0.005</gaussianNoise>
+          <alwaysOn>1</alwaysOn>
+          <updateRate>40</updateRate>
+          <topicName>laser</topicName>
+          <frameName>laser</frameName>
+        </plugin-->
+
+      <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
+        <topicName>/pico/laser_sim</topicName>
+         <frameName>/pico/laser/scan</frameName> 
+        <robotNamespace></robotNamespace>        
+        <gaussianNoise>0.01</gaussianNoise>
+        <always_on>1</always_on>
+        <updateRate>30.0</updateRate>
+      </plugin>        
+      <visualize>1</visualize>
+      <pose>0.04 0 0.349 0 -0 0</pose>
+      
+    </sensor>
+      
+  <!--    <collision name='neck_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.015 0.04 0.025</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='neck_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.015 0.04 0.03</size>
+          </box>
+        </geometry>              
+      </visual> -->
+     
+      <visual name='head_pitch_link_visual'>
+        <pose>-0.06 0 0.93875 0 -0 3.1415</pose>
+        <geometry>
+          <mesh>
+            <scale>0.00254 0.00254 0.00254</scale>
+            <uri>model://media/meshes/headnew.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>pico_robot_model_groovy/head</name>
+            <uri>model://media/materials/scripts/tue_mats.material</uri>
+          </script>
+        </material>
+      </visual>    
+    <!--  <collision name='head_pitch_link_collision'>
+        <pose>-0.06 0 0.93875 0 -0 3.1415</pose>
+        <geometry>
+          <mesh>
+            <scale>0.00254 0.00254 0.00254</scale>
+            <uri>model://media/meshes/headnew.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision> -->
+      
+       <!--
+      <visual name='head_pitch_link_visual_xtion_pro'>
+        <pose>-0.02 0 0.09 1.5708 -5.55112e-17 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://media/meshes/asus_xtion_pro_live.dae</uri>
+          </mesh>
+        </geometry>        
+      </visual>       
+      <collision name='head_pitch_link_collision_xtion_pro'>
+        <pose>-0.02 0 0.09 1.5708 -5.55112e-17 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://media/meshes/asus_xtion_pro_live.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      -->
+      
+      <!--
+         <sensor name='asusxtion' type='depth'>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>1</visualize>
+        <plugin name='asusxtion_controller' filename='libKinectPlugin.so'>
+          <camera>
+            <horizontal_fov>2.967060</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip/>
+          </camera>
+          <alwaysOn>1</alwaysOn>
+          <updateRate>30.0</updateRate>
+          <cameraName>asusxtion</cameraName>
+          <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+          <imageTopicName>rgb/image_color_rect</imageTopicName>
+          <camInfoServiceName>rgb/cam_info_service</camInfoServiceName>
+          <depthImageTopicName>depth_registered/image_rect</depthImageTopicName>
+          <depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
+          <pointCloudTopicName>rgb/points</pointCloudTopicName>
+          <pollServiceName>poll</pollServiceName>
+          <frameName>camera</frameName>
+          <ratio>3.7778</ratio>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+          <distortionK1>0</distortionK1>
+          <distortionK2>0</distortionK2>
+          <distortionK3>0</distortionK3>
+          <distortionT1>0</distortionT1>
+          <distortionT2>0</distortionT2>
+        </plugin>
+        <pose>-0.02 0 0.09 0 -0 0</pose>
+      </sensor> -->
+     
+      <collision name='left_wheel_collision'>
+        <pose>0.1 0.1375 0.09 1.5708 -0 0</pose>  <!--pose>0 0 0 1.5708 -0 0</pose-->
+      
+        <geometry>
+          <cylinder>
+            <length>0.023</length>
+            <radius>0.09</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+09</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>5</mu>
+              <mu2>5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='left_wheel_visual'>
+      <pose>0.1 0.1375 0.09 1.5708 -0 0</pose>  <!--pose>0 0 0 1.5708 -0 0</pose-->
+      
+        <geometry>
+          <cylinder>
+            <length>0.023</length>
+            <radius>0.09</radius>
+          </cylinder>
+        </geometry>
+      
+      </visual>
+     
+  
+      <collision name='right_wheel_collision'>
+       <pose>0.1 -0.1375 0.09 1.5708 -0 0</pose>  <!--pose>0 0 0 1.5708 -0 0</pose-->
+        <geometry>
+          <cylinder>
+            <length>0.023</length>
+            <radius>0.09</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+09</kp>
+              <kd>1</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>5</mu>
+              <mu2>5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='right_wheel_visual'>
+        <pose>0.1 -0.1375 0.09 1.5708 -0 0</pose>  <!--pose>0 0 0 1.5708 -0 0</pose-->
+      
+        <geometry>
+          <cylinder>
+            <length>0.023</length>
+            <radius>0.09</radius>
+          </cylinder>
+        </geometry>
+       
+      </visual>
+      <!--velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay-->
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+
+   
+   </link>
+
+<plugin name="Odometry_Plugin" filename="libOdometry_Plugin.so">
+       <updateRate>30.0</updateRate>
+       <veltopicName>/pico/cmd_vel</veltopicName>       
+       <odomtopicName>/pico/odom</odomtopicName>       
+       <robotBaseFrame>/pico/base_link</robotBaseFrame>
+       <odomFrame>/pico/odom</odomFrame>
+      
+ </plugin>
+
+
+
+  </model>
+
+</sdf>

@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+   
+  <model name='ropod_mobidik'>      
+   
+   <include>
+      <uri>model://mobidik</uri>     
+      <pose>-1.045 0 0 0 0 0</pose>  
+    </include>
+ 
+   <include>
+      <uri>model://ropod</uri>            
+    </include>
+    
+    <joint name="ropod_mobidik_joint" type="fixed">
+      <child>ropod::base_link</child>
+      <parent>mobidik::base_link</parent>
+    </joint>
+    
+
+  </model>
+
+  </sdf>
