@@ -1,0 +1,13 @@
+material pico_robot_model_groovy/head
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture head/head.jpg
+			}
+		}
+	}
+}
