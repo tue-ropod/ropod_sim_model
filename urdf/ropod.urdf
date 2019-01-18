@@ -183,7 +183,7 @@
       </visual>     
 
 <!-- ********************** laser ***************************** -->       
-      
+     <!-- 
       <visual name='base_link_visual_laser'>
         <pose>0.25 0 0.25 0 -0 0</pose>
         <geometry>
@@ -236,7 +236,7 @@
         <topicName>/ropod/laser_sim</topicName>
          <frameName>/ropod/laser/scan</frameName> 
         <robotNamespace></robotNamespace>        
-        <gaussianNoise>0.01</gaussianNoise>
+        <gaussianNoise>1.01</gaussianNoise>
         <always_on>1</always_on>
         <updateRate>30.0</updateRate>
       </plugin>        
@@ -244,7 +244,7 @@
      
       
     </sensor>
-
+      -->
      
 <!-- ********************** Camera ***************************** -->    
 
