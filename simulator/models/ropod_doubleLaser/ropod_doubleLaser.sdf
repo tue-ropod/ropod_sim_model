@@ -309,7 +309,7 @@
       -->
  
  <!-- ********************** laser  back ***************************** -->       
- <!--  
+   
       <visual name='base_link_visual_laser'>
         <pose>-0.285 0 0.22 0 -0 3.14</pose>
         <geometry>
@@ -365,7 +365,7 @@
 
  </sensor>
 
- -->  
+      
 <!-- ********************** Other parameters ***************************** -->
       <gravity>1</gravity>
       <velocity_decay>

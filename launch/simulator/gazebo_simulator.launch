@@ -12,7 +12,8 @@
 	<arg name="model_name" default="pico"/> 
 	<arg name="model_path" />
         <arg name="movingObjects" default="false" />
-
+        <arg name="doubleLaser" />
+        
         <group unless="$(arg movingObjects)">
                 <include file="$(find gazebo_ros)/launch/empty_world.launch">
                         <!-- <arg name="verbose" value="true" /> -->
@@ -21,11 +22,22 @@
         </group>
 
         <group if="$(arg movingObjects)">
-                <include file="$(find gazebo_ros)/launch/empty_world.launch">
-                        <!--  <arg name="verbose" value="true" /> -->
-                          <arg name="world_name" value="$(arg model_path)/world/$(arg robot)_movingObjects.world"/>
-                </include>
+                 <group if="$(arg doubleLaser)">
+                        <include file="$(find gazebo_ros)/launch/empty_world.launch">
+                                <!--  <arg name="verbose" value="true" /> -->
+                                <arg name="world_name" value="$(arg model_path)/world/$(arg robot)_movingObjects_doubleLaser.world"/>
+                        </include>
+                </group>
+                
+                 <group unless="$(arg doubleLaser)">
+                        <include file="$(find gazebo_ros)/launch/empty_world.launch">
+                                <!--  <arg name="verbose" value="true" /> -->
+                                <arg name="world_name" value="$(arg model_path)/world/$(arg robot)_movingObjects.world"/>
+                        </include>
+                </group>
         </group>
 	
+       
+        
 	<node name="throttle" pkg="topic_tools" type="throttle" args="messages /$(arg robot)/laser_sim 20.0 /$(arg robot)/laser/scan" />  
 </launch>
