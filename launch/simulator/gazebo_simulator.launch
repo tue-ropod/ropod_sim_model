@@ -13,30 +13,36 @@
 	<arg name="model_path" />
         <arg name="movingObjects" default="false" />
         <arg name="doubleLaser" />
+        <arg name="gui" default="false"/>
         
         <group unless="$(arg movingObjects)">
-                <include file="$(find gazebo_ros)/launch/empty_world.launch">
-                        <!-- <arg name="verbose" value="true" /> -->
-                          <arg name="world_name" value="$(arg model_path)/world/$(arg robot).world"/>
-                </include>
+                <!-- start gazebo server-->
+                <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(arg model_path)/world/$(arg robot).world" required="true">
+                    <param name="pub_clock_frequency" value="true" />
+                </node>                
         </group>
+        
 
         <group if="$(arg movingObjects)">
                  <group if="$(arg doubleLaser)">
-                        <include file="$(find gazebo_ros)/launch/empty_world.launch">
-                                <!--  <arg name="verbose" value="true" /> -->
-                                <arg name="world_name" value="$(arg model_path)/world/$(arg robot)_movingObjects_doubleLaser.world"/>
-                        </include>
+                        <!-- start gazebo server-->
+                        <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(arg model_path)/world/$(arg robot)_movingObjects_doubleLaser.world" required="true">
+                            <param name="pub_clock_frequency" value="true" />
+                        </node>      
                 </group>
                 
                  <group unless="$(arg doubleLaser)">
-                        <include file="$(find gazebo_ros)/launch/empty_world.launch">
-                                <!--  <arg name="verbose" value="true" /> -->
-                                <arg name="world_name" value="$(arg model_path)/world/$(arg robot)_movingObjects.world"/>
-                        </include>
+                        <!-- start gazebo server-->
+                        <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(arg model_path)/world/$(arg robot)_movingObjects.world" required="true">
+                            <param name="pub_clock_frequency" value="true" />
+                        </node>                             
                 </group>
         </group>
 	
+        <!-- start gazebo client -->
+        <group if="$(arg gui)">
+            <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen"/>
+        </group>
        
         
 	<node name="throttle" pkg="topic_tools" type="throttle" args="messages /$(arg robot)/laser_sim 20.0 /$(arg robot)/laser/scan" />  
