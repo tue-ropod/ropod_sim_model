@@ -8,15 +8,17 @@
 	<!--<env name="GAZEBO_MODEL_DATABASE_URI" value="" /> THIS VARIABLE SHOULD BE CHANGED LOCALLY, 
 	see http://cstwiki.wtb.tue.nl/index.php?title=RoPod/Tutorials/GAZEBO_installation_and_interface_with_ROS/Faster statup of Gazebo -->
 	
-	<arg name="robot" default="pico"/>
-	<arg name="model_name" default="pico"/> 
-	<arg name="model_path" />
+	<arg name="robot" default="ropod"/>
+	<arg name="model_name" default="ropod"/> 
+	<arg name="model_path" default="$(find ropod_sim_model)" />
+	<arg name="gui" default="true" />
         <arg name="movingObjects" default="false" />
 
         <group unless="$(arg movingObjects)">
                 <include file="$(find gazebo_ros)/launch/empty_world.launch">
                         <!-- <arg name="verbose" value="true" /> -->
                           <arg name="world_name" value="$(arg model_path)/world/$(arg robot).world"/>
+                          <arg name="gui" value="$(arg gui)"/>
                 </include>
         </group>
 
