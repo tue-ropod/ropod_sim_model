@@ -226,7 +226,24 @@
      
       
     </sensor>
-      
+
+
+    <!-- ********************** bumper ***************************** -->
+    <sensor type="contact" name="gazebo_base_bumper">
+        <update_rate>1000.0</update_rate>
+        <always_on>1</always_on>
+        <contact>
+            <collision>base_link_collision</collision>
+            <topic>bumper_contact</topic>
+        </contact>
+        <plugin name="gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>1000.0</updateRate>
+            <bumperTopicName>/ropod/bumper</bumperTopicName>
+            <frameName>world</frameName>
+        </plugin>
+    </sensor>
+
   
 <!-- ********************** Other parameters ***************************** -->
       <gravity>1</gravity>
@@ -246,8 +263,6 @@
        <robotBaseFrame>/ropod/base_link</robotBaseFrame>
        <odomFrame>/ropod/odom</odomFrame>      
    </plugin>
-   
-   
 
    <!--
    <plugin name="Odometry_Plugin" filename="libgazebo_ros_planar_move.so">
