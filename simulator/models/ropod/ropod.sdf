@@ -230,7 +230,7 @@
 
     <!-- ********************** bumper ***************************** -->
     <sensor type="contact" name="gazebo_base_bumper">
-        <update_rate>1000.0</update_rate>
+        <update_rate>100.0</update_rate>
         <always_on>1</always_on>
         <contact>
             <collision>base_link_collision</collision>
@@ -238,7 +238,7 @@
         </contact>
         <plugin name="gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
             <alwaysOn>true</alwaysOn>
-            <updateRate>1000.0</updateRate>
+            <updateRate>100.0</updateRate>
             <bumperTopicName>/ropod/bumper</bumperTopicName>
             <frameName>world</frameName>
         </plugin>
