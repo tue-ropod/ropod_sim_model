@@ -12,6 +12,11 @@
       <uri>model://ropod</uri>
       <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>      
     </include>
+    <gui>
+        <camera name="user_camera">
+            <pose>0 0 13 0 1.57 1.57</pose>
+        </camera>
+    </gui>
 
 
  </world>
