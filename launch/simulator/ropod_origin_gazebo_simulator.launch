@@ -14,7 +14,7 @@
 	<arg name="gui" default="true" />
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(arg model_path)/world/gym_empty.world"/>
+    <arg name="world_name" value="$(arg model_path)/world/ropod_origin.world"/>
               <arg name="gui" value="$(arg gui)"/>
     </include>
 	
