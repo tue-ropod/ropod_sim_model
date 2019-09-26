@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+ <world name="default">
+   <include>
+      <uri>model://sun</uri>
+   </include>
+   <include>
+      <uri>model://ground_plane</uri>
+   </include>
+   
+   <!-- Inital TUe-pose -->
+  <!-- <include>
+      <uri>model://ropod_tue_2</uri>
+      <pose>-4.9 9.8 0.0 0.0 0.0 -1.54</pose>      
+    </include>
+   -->
+   <!-- Initial BRSU-pose -->
+   <include>
+      <uri>model://ropod_tue_2</uri>
+      <pose>-4.9 9.8 0.0 0.0 0.0 -1.54</pose>      
+    </include>
+    
+ </world>
+</sdf>

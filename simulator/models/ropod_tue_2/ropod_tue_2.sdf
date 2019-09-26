@@ -1,14 +1,28 @@
-<?xml version="1.0"?>
-<robot name="visual">
+<?xml version='1.0'?>
+<sdf version='1.5'>
+   
+  <model name='ropod_model'>      
+   
 
-           
-    <link name='base_link'>
-      <pose>0 0 0 0 -0 0</pose>
-  
-
-
+   <link name='base_link'>        
+     
+     
+     	   
+      <inertial>
+        <mass>0.01</mass>
+        <inertia> <!-- inertias are tricky to compute -->
+          <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+          <ixx>0.083*00.0*1.01</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+          <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+          <iyy>0.083*00.01*1.01</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+          <izz>0.083*00.01*2</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        </inertia>
+      </inertial>
+	   
       <collision name='base_link_collision'>
-        <pose>0 0 0.1 0 0 0</pose>
+        <pose>0 0 0.15 0 0 0</pose>
         <geometry>
           <box>
             <size>0.6 0.6 0.1</size>
@@ -16,12 +30,18 @@
         </geometry>        
       </collision>
       <visual name='base_link_visual'>
-        <pose>0 0 0.1 0 0 0</pose>
+        <pose>0 0 0.15 0 0 0</pose>
         <geometry>
           <box>
             <size>0.6 0.6 0.1</size>
           </box>
         </geometry>
+	<material>
+		<ambient>0.5 0.5 0.5 1</ambient>
+		<diffuse>0.5 0.5 0.5 1</diffuse>
+		<specular>0.1 0.1 0.1 1</specular>
+		<emissive>0 0 0 0</emissive>
+	</material>         
       </visual>      
       
       <collision name='base_link_collision_left_rear_wheel'>
@@ -31,14 +51,6 @@
             <radius>0.05</radius>
           </sphere>
         </geometry>
-         <surface>
-          <contact>
-            <ode/>
-          </contact>
-          <friction>
-            <ode/>
-          </friction>
-        </surface>
         <surface>
           <contact>
             <ode>
@@ -71,14 +83,6 @@
             <radius>0.05</radius>
           </sphere>
         </geometry>
-         <surface>
-          <contact>
-            <ode/>
-          </contact>
-          <friction>
-            <ode/>
-          </friction>
-        </surface>
         <surface>
           <contact>
             <ode>
@@ -110,14 +114,6 @@
             <radius>0.05</radius>
           </sphere>
         </geometry>
-         <surface>
-          <contact>
-            <ode/>
-          </contact>
-          <friction>
-            <ode/>
-          </friction>
-        </surface>
         <surface>
           <contact>
             <ode>
@@ -150,14 +146,6 @@
             <radius>0.05</radius>
           </sphere>
         </geometry>
-         <surface>
-          <contact>
-            <ode/>
-          </contact>
-          <friction>
-            <ode/>
-          </friction>
-        </surface>
         <surface>
           <contact>
             <ode>
@@ -188,7 +176,7 @@
         <pose>0.25 0 0.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>0.04 0.04 0.039</size>
+            <size>0.04 0.04 0.04</size>
           </box>
         </geometry>
       </visual>
@@ -202,14 +190,14 @@
       </visual>
       
       <sensor name='laser' type='ray'>
-	 <pose>0.25 0 0.22 0 0 0</pose>
+	 <pose>0.25 0 0.25 0 0 0</pose>
         <ray>
           <scan>
             <horizontal>
-              <samples>1000</samples>
+              <samples>500</samples>
               <resolution>1</resolution>
-              <min_angle>-2.2</min_angle>
-              <max_angle>2.2</max_angle>
+              <min_angle>-2.35</min_angle>
+              <max_angle>2.35</max_angle>
             </horizontal>
             <vertical>
               <samples>1</samples>
@@ -220,21 +208,15 @@
           </scan>
           <range>
             <min>0.01</min>
-            <max>15</max>
+            <max>4</max>
             <resolution>0.01</resolution>
           </range>
-	  <material>
-	      <script>
-	      <name>Gazebo/BlueTransparent</name>
-	      <uri>file://media/materials/scripts/gazebo.material</uri>
-	    </script>
-	  </material>
         </ray>
 
 
       <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
         <topicName>laser_sim</topicName>
-         <frameName>laser/scan</frameName> 
+         <frameName>/ropod_tue_2/laser/scan</frameName> 
         <robotNamespace></robotNamespace>        
         <gaussianNoise>0.01</gaussianNoise>
         <always_on>1</always_on>
@@ -245,50 +227,24 @@
       
     </sensor>
 
-     
-<!-- ********************** Camera ***************************** -->    
 
-         <sensor name='asusxtion' type='depth'>
+    <!-- ********************** bumper ***************************** -->
+    <sensor type="contact" name="gazebo_base_bumper">
+        <update_rate>100.0</update_rate>
         <always_on>1</always_on>
-        <update_rate>30</update_rate>
-        <visualize>1</visualize>
-        <plugin name='asusxtion_controller' filename='libKinectPlugin.so'>
-          <camera>
-            <horizontal_fov>2.967060</horizontal_fov>
-            <image>
-              <width>640</width>
-              <height>480</height>
-              <format>R8G8B8</format>
-            </image>
-            <clip/>
-          </camera>
-          <alwaysOn>1</alwaysOn>
-          <updateRate>30.0</updateRate>
-          <cameraName>asusxtion</cameraName>
-          <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
-          <imageTopicName>rgb/image_color_rect</imageTopicName>
-          <camInfoServiceName>rgb/cam_info_service</camInfoServiceName>
-          <depthImageTopicName>depth_registered/image_rect</depthImageTopicName>
-          <depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
-          <pointCloudTopicName>rgb/points</pointCloudTopicName>
-          <pollServiceName>poll</pollServiceName>
-          <frameName>camera</frameName>
-          <ratio>3.7778</ratio>
-          <CxPrime>0</CxPrime>
-          <Cx>0</Cx>
-          <Cy>0</Cy>
-          <focalLength>0</focalLength>
-          <hackBaseline>0</hackBaseline>
-          <distortionK1>0</distortionK1>
-          <distortionK2>0</distortionK2>
-          <distortionK3>0</distortionK3>
-          <distortionT1>0</distortionT1>
-          <distortionT2>0</distortionT2>
+        <contact>
+            <collision>base_link_collision</collision>
+            <topic>bumper_contact</topic>
+        </contact>
+        <plugin name="gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>100.0</updateRate>
+            <bumperTopicName>bumper</bumperTopicName>
+            <frameName>world</frameName>
         </plugin>
-        <pose>-0.02 0 0.09 0 -0 0</pose>
-      </sensor>
+    </sensor>
 
-     
+  
 <!-- ********************** Other parameters ***************************** -->
       <gravity>1</gravity>
       <velocity_decay>
@@ -300,16 +256,24 @@
    
    </link>
 
-<plugin name="Odometry_Plugin" filename="libOdometry_Plugin.so">
-       <alwaysOn>true</alwaysOn>
-       <updateRate>50.0</updateRate>
-       <bodyName>base_link</bodyName>
-       <topicName>cmd_vel</topicName>
-       <gaussianNoise>0</gaussianNoise>
-       <frameName>map</frameName>
-       <xyzOffsets>0 0 0</xyzOffsets> 
-       <rpyOffsets>0 0 0</rpyOffsets>
- </plugin>
+   <plugin name="Odometry_Plugin" filename="libOdometry_Plugin.so">
+       <updateRate>30.0</updateRate>
+       <veltopicName>/ropod_tue_2/cmd_vel</veltopicName>        <!-- TEMP DEFINED AS ropod_tue_2 -> define with xacro--> 
+       <odomtopicName>/ropod_tue_2/odom_incomplete</odomtopicName>       <!-- TEMP DEFINED AS ropod_tue_2 -> define with xacro--> 
+       <robotBaseFrame>/ropod_tue_2/base_link</robotBaseFrame>
+       <odomFrame>/ropod_tue_2/odom</odomFrame>      
+   </plugin>
 
+   <!--
+   <plugin name="Odometry_Plugin" filename="libgazebo_ros_planar_move.so">
+       <odometryRate>30.0</odometryRate>
+       <commandTopic>/ropod_model/cmd_vel</commandTopic>       
+       <odometryTopic>/ropod_model/odom_incomplete</odometryTopic>       
+       <robotBaseFrame>/ropod_model/base_link</robotBaseFrame>
+       <odometryFrame>/ropod_model/odom</odometryFrame>      
+   </plugin>
+   -->
 
-</robot>
+  </model>
+
+  </sdf>
