@@ -10,8 +10,8 @@
 	
 	<arg name="robot" />
         <arg name="robotCommonName" default="ropod"/>
-	<arg name="model_name" default="ropod"/> 
-	<arg name="model_path" default="$(find ropod_sim_model)" />
+        <!--<arg name="model_name" default="ropod"/> -->
+        <arg name="model_path" default="$(find ropod_sim_model)" />
 	<arg name="gui" default="true" />
         <arg name="movingObjects" default="false" />
 
