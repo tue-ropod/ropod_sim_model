@@ -12,7 +12,7 @@
 	<arg name="model_name" default="pico"/> 
 	<arg name="model_path" />
         <arg name="movingObjects" default="false" />
-        <arg name="doubleLaser" />
+        <arg name="doubleLaser" default="false" />
         <arg name="gui" default="false"/>
         
         <group unless="$(arg movingObjects)">
@@ -27,15 +27,16 @@
                  <group if="$(arg doubleLaser)">
                         <!-- start gazebo server-->
                         <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(arg model_path)/world/$(arg robot)_movingObjects_doubleLaser.world" required="true">
-                            <param name="pub_clock_frequency" value="true" />
+                            <!--<param name="pub_clock_frequency" value="true" />-->
                         </node>      
                 </group>
                 
                  <group unless="$(arg doubleLaser)">
                         <!-- start gazebo server-->
-                        <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(arg model_path)/world/$(arg robot)_movingObjects.world" required="true">
-                            <param name="pub_clock_frequency" value="true" />
-                        </node>                             
+                       <include file="$(find gazebo_ros)/launch/empty_world.launch">
+                                <!--  <arg name="verbose" value="true" /> -->
+                                <arg name="world_name" value="$(arg model_path)/world/$(arg robot)_movingObjects.world"/>
+                        </include>                          
                 </group>
         </group>
 	

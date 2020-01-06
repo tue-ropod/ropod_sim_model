@@ -35,27 +35,65 @@ class AnimatedCylinder2 : public ModelPlugin
               // name the animation "test",
               // make it last 10 seconds,
               // and set it on a repeat loop
-              new gazebo::common::PoseAnimation("test", 30.0, true));
+              new gazebo::common::PoseAnimation("test", 10.0, true));
 
         gazebo::common::PoseKeyFrame *key;
 
         // set starting location of the box
-        key = anim->CreateKeyFrame(0);
-        key->Translation(ignition::math::Vector3d(-4.3, 1.9, 0));
+     /*   key = anim->CreateKeyFrame(0);
+        key->Translation(ignition::math::Vector3d(5.06, 5.46, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 2.84));
+        
+        key = anim->CreateKeyFrame(10.0);
+        key->Translation(ignition::math::Vector3d(3.93, 0.9, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 2.84));
+
+        key = anim->CreateKeyFrame(25.0);
+        key->Translation(ignition::math::Vector3d(10.3, -0.4, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 2.84));*/
+     /*   
+        key = anim->CreateKeyFrame(18.0);
+        key->Translation(ignition::math::Vector3d(7.4, 0.647, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        
+        key = anim->CreateKeyFrame(24.0);
+        key->Translation(ignition::math::Vector3d(4.08, 1.58, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        
+        key = anim->CreateKeyFrame(30.0);
+        key->Translation(ignition::math::Vector3d(5.06, 5.46, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+       */
+//         // set waypoint location after 2 seconds
+//         key = anim->CreateKeyFrame(2.5);
+// //         key->Translation(ignition::math::Vector3d(-50, -50, 0));
+// //         key->Rotation(ignition::math::Quaterniond(0, 0, 1.5707));
+//         key->Translation(ignition::math::Vector3d(4.5, 0.5, 0));
+//         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+// 
+// // set final location equal to starting location
+//         key = anim->CreateKeyFrame(5.0);
+// //         key->Translation(ignition::math::Vector3d(10, 20, 0));
+// //         key->Rotation(ignition::math::Quaterniond(0, 0, 1.5707));
+//         key->Translation(ignition::math::Vector3d(3, 3, 0));
+//         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        
+                key = anim->CreateKeyFrame(0);
+        key->Translation(ignition::math::Vector3d(3.6, 2.5, 0));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
         // set waypoint location after 2 seconds
-        key = anim->CreateKeyFrame(15.0);
+        key = anim->CreateKeyFrame(5);
 //         key->Translation(ignition::math::Vector3d(-50, -50, 0));
 //         key->Rotation(ignition::math::Quaterniond(0, 0, 1.5707));
-        key->Translation(ignition::math::Vector3d(-8.0, 3.1, 0));
+        key->Translation(ignition::math::Vector3d(4.0, 1, 0));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
 // set final location equal to starting location
-        key = anim->CreateKeyFrame(30.0);
+        key = anim->CreateKeyFrame(10.0);
 //         key->Translation(ignition::math::Vector3d(10, 20, 0));
 //         key->Rotation(ignition::math::Quaterniond(0, 0, 1.5707));
-        key->Translation(ignition::math::Vector3d(-4.3, 1.9, 0));
+        key->Translation(ignition::math::Vector3d(3.6, 2.5, 0));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
         // set the animation
