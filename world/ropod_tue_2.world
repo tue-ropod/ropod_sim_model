@@ -9,16 +9,16 @@
    </include>
    
    <!-- Inital TUe-pose -->
+   <include>
+      <uri>model://ropod_tue_2</uri>
+      <pose>4.8 8.7 0.0 0.0 0.0 -1.54</pose>      
+    </include>
+  
+   <!-- Initial BRSU-pose -->
   <!-- <include>
       <uri>model://ropod_tue_2</uri>
       <pose>-4.9 9.8 0.0 0.0 0.0 -1.54</pose>      
     </include>
-   -->
-   <!-- Initial BRSU-pose -->
-   <include>
-      <uri>model://ropod_tue_2</uri>
-      <pose>-4.9 9.8 0.0 0.0 0.0 -1.54</pose>      
-    </include>
-    
+    -->
  </world>
 </sdf>
