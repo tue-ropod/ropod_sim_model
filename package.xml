@@ -9,8 +9,6 @@
   <license>TODO</license>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>geolib2</build_depend>
-  <build_depend>code_profiler</build_depend>
   <build_depend>roslib</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
