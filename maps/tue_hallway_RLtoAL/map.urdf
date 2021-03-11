@@ -15,7 +15,7 @@
 		<origin rpy="0 0 0" xyz="-6 5 0.0"/>
 		<geometry>
 			<mesh
-				filename="package://ed_object_models/models/tue_hallway_RLtoAL/walls/shape/map.stl"
+				filename="package://ropod_sim_model/maps/tue_hallway_RLtoAL/map.stl"
 				scale="0.001 0.001 0.003"
 			/>
 		</geometry>
@@ -25,7 +25,7 @@
 		<origin rpy="0 0 0" xyz="-6 5 0.0"/>
 		<geometry>
 			<mesh
-				filename="package://ed_object_models/models/tue_hallway_RLtoAL/walls/shape/map.stl"
+				filename="package://ropod_sim_model/maps/tue_hallway_RLtoAL/map.stl"
 				scale="0.001 0.001 0.003"
 			/>
 		</geometry>
