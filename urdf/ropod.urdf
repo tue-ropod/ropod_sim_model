@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <robot name="visual">
 
-           
+
     <link name='base_link'>
       <pose>0 0 0 0 -0 0</pose>
-  
+
 
 
       <collision name='base_link_collision'>
@@ -13,7 +13,7 @@
           <box>
             <size>0.6 0.6 0.1</size>
           </box>
-        </geometry>        
+        </geometry>
       </collision>
       <visual name='base_link_visual'>
         <pose>0 0 0.1 0 0 0</pose>
@@ -22,8 +22,8 @@
             <size>0.6 0.6 0.1</size>
           </box>
         </geometry>
-      </visual>      
-      
+      </visual>
+
       <collision name='base_link_collision_left_rear_wheel'>
         <pose>-0.25 0.25 0.05 0 -0 0</pose>
         <geometry>
@@ -102,7 +102,7 @@
           </sphere>
         </geometry>
       </visual>
-      
+
       <collision name='base_link_collision_right_top_wheel'>
         <pose>0.25 -0.25 0.05 0 -0 0</pose>
         <geometry>
@@ -140,9 +140,9 @@
             <radius>0.05</radius>
           </sphere>
         </geometry>
-      </visual>            
-  
-  
+      </visual>
+
+
       <collision name='base_link_collision_right_rear_wheel'>
         <pose>-0.25 -0.25 0.05 0 -0 0</pose>
         <geometry>
@@ -180,10 +180,10 @@
             <radius>0.05</radius>
           </sphere>
         </geometry>
-      </visual>     
+      </visual>
 
-<!-- ********************** laser ***************************** -->       
-      
+<!-- ********************** laser ***************************** -->
+
       <visual name='base_link_visual_laser'>
         <pose>0.25 0 0.25 0 -0 0</pose>
         <geometry>
@@ -198,9 +198,9 @@
           <box>
             <size>0.04 0.04 0.01</size>
           </box>
-        </geometry>        
+        </geometry>
       </visual>
-      
+
       <sensor name='laser' type='ray'>
 	 <pose>0.25 0 0.22 0 0 0</pose>
         <ray>
@@ -234,19 +234,19 @@
 
       <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
         <topicName>/ropod/laser_sim</topicName>
-         <frameName>/ropod/laser/scan</frameName> 
-        <robotNamespace></robotNamespace>        
+         <frameName>/ropod/laser/scan</frameName>
+        <robotNamespace></robotNamespace>
         <gaussianNoise>0.01</gaussianNoise>
         <always_on>1</always_on>
         <updateRate>30.0</updateRate>
-      </plugin>        
+      </plugin>
       <visualize>1</visualize>
-     
-      
+
+
     </sensor>
 
-     
-<!-- ********************** Camera ***************************** -->    
+
+<!-- ********************** Camera ***************************** -->
 
          <sensor name='asusxtion' type='depth'>
         <always_on>1</always_on>
@@ -288,7 +288,7 @@
         <pose>-0.02 0 0.09 0 -0 0</pose>
       </sensor>
 
-     
+
 <!-- ********************** Other parameters ***************************** -->
       <gravity>1</gravity>
       <velocity_decay>
@@ -297,19 +297,32 @@
       </velocity_decay>
       <self_collide>0</self_collide>
 
-   
+
    </link>
 
-<plugin name="Odometry_Plugin" filename="libOdometry_Plugin.so">
+<gazebo>
+<!-- Groundtruth plugin -->
+<plugin name="robot_groundtruth_sim" filename="libgazebo_ros_pd.so">
+  <alwaysOn>true</alwaysOn>
+  <updateRate>100.0</updateRate>
+  <bodyName>base_link</bodyName>
+  <topicName>/ropod/odom</topicName>
+  <gaussianNoise>0.0</gaussianNoise>
+  <frameName>map</frameName>
+  <xyzOffsets>0 0 0</xyzOffsets>
+  <rpyOffsets>0 0 0</rpyOffsets>
+</plugin>
+
+<!-- <plugin name="Odometry_Plugin" filename="libOdometry_Plugin.so">
        <alwaysOn>true</alwaysOn>
-       <updateRate>50.0</updateRate>
+       <updateRate>100.0</updateRate>
        <bodyName>base_link</bodyName>
        <topicName>/ropod/cmd_vel</topicName>
        <gaussianNoise>0</gaussianNoise>
        <frameName>map</frameName>
-       <xyzOffsets>0 0 0</xyzOffsets> 
+       <xyzOffsets>0 0 0</xyzOffsets>
        <rpyOffsets>0 0 0</rpyOffsets>
- </plugin>
-
+ </plugin> -->
+</gazebo>
 
 </robot>

@@ -3,7 +3,7 @@ project(ropod_sim_model)
 
 
 find_package(catkin REQUIRED COMPONENTS
-    roslib   
+    roslib
     roscpp
     std_msgs
 )
