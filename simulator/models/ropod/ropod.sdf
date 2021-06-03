@@ -226,7 +226,7 @@
 
     <!-- ********************** laser back ***************************** -->
 
-      <visual name='base_link_visual_laser_back'>
+      <!-- <visual name='base_link_visual_laser_back'>
         <pose>-0.25 0 0.25 0 0 0</pose>
         <geometry>
           <box>
@@ -276,7 +276,7 @@
           <updateRate>30.0</updateRate>
         </plugin>
         <visualize>1</visualize>
-      </sensor>
+      </sensor> -->
 
     <!-- ********************** bumper ***************************** -->
     <sensor type="contact" name="gazebo_base_bumper">

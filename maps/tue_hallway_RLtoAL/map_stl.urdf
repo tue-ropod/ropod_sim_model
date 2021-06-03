@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot name="map">
+
+
+<link name="map">
+	<inertial>
+		<mass value="10000"/>
+		<inertia
+			ixx="100000.0" ixy="0.0" ixz="0.0"
+			iyy="100000.0" iyz="0.0"
+			izz="100000.0"/>
+	</inertial>
+
+	<visual name="map_visual">
+		<origin rpy="0 0 0" xyz="-6 5 0.0"/>
+		<geometry>
+			<mesh
+				filename="package://ropod_sim_model/maps/tue_hallway_RLtoAL/map.stl"
+				scale="0.001 0.001 0.003"
+			/>
+		</geometry>
+	</visual>
+
+	<collision name="map_collision">
+		<origin rpy="0 0 0" xyz="-6 5 0.0"/>
+		<geometry>
+			<mesh
+				filename="package://ropod_sim_model/maps/tue_hallway_RLtoAL/map.stl"
+				scale="0.001 0.001 0.003"
+			/>
+		</geometry>
+	</collision>
+
+</link>
+
+<gazebo reference="map">
+	<maxContacts>10</maxContacts>
+	<laserRetro>0</laserRetro>
+	<dampingFactor>0.1</dampingFactor>
+	<selfCollide>false</selfCollide>
+	<static>true</static>
+</gazebo>
+
+</robot>
