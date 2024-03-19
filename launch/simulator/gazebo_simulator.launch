@@ -13,11 +13,12 @@
     <arg name="model_path" default="$(find ropod_sim_model)" />
     <arg name="gui" default="true" />
     <arg name="movingObjects" default="false" />
+    <arg name="world_name" default="$(arg model_path)/world/$(arg robot).world"/>
 
     <group unless="$(arg movingObjects)">
         <include file="$(find gazebo_ros)/launch/empty_world.launch">
-            <!-- <arg name="verbose" value="true" /> -->
-            <arg name="world_name" value="$(arg model_path)/world/$(arg robot).world"/>
+            <arg name="verbose" value="true" />
+            <arg name="world_name" value="$(arg world_name)"/>
             <arg name="gui" value="$(arg gui)"/>
         </include>
     </group>
