@@ -13,6 +13,11 @@
       <pose>0.0 0.0 0.0 0.0 0.0 1.5708</pose>
     </include>
 
+    <include>
+      <uri>model://ropod_2</uri>
+      <pose>1.0 0.0 0.0 0.0 0.0 1.5708</pose>
+    </include>
+
    <!-- <include>
       <uri>model://tue_map</uri>
       <pose>-0.0 0.0 0.0 0.0 0.0 0.0</pose>
